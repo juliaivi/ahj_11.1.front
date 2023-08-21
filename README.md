@@ -1,3 +1,5 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/irq1pc33swvk9bd9?svg=true)](https://ci.appveyor.com/project/juliaivi/ahj-11-1-front)
+
 # Домашнее задание к занятию "11. RxJS"
 
 Правила сдачи задания:
