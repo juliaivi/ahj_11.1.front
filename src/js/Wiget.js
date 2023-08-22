@@ -10,7 +10,7 @@ export default class Widget {
   constructor() {
     this.container = document.querySelector('.container');
     // https://ahj-11-1.onrender.com
-    this.url = 'https://ahj-11-1.onrender.com/messages/unread';
+    this.url = 'https://ahj-11-1-backv2.onrender.com/messages/unread';
     // this.url = 'http://localhost:3000/messages/unread';
     this.subject = null;
     this.table = document.querySelector('table');
