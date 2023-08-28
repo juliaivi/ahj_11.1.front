@@ -9,13 +9,12 @@ import errorMessage from './errorMessage';
 export default class Widget {
   constructor() {
     this.container = document.querySelector('.container');
-    this.url = 'https://ahj-11-1-backv2.onrender.com/messages/unread';
-    // this.url = 'http://localhost:3000/messages/unread';
+    // this.url = 'https://ahj-11-1-backv2.onrender.com/messages/unread';
+    this.url = 'http://localhost:3000/messages/unread';
     this.subject = null;
     this.table = document.querySelector('table');
     this.tbody = document.querySelector('tbody');
     this.activeMess = null;
-    this.messId = new Set();
   }
 
   init() {
@@ -43,27 +42,23 @@ export default class Widget {
     }
   }
 
-  subscribeStream() { // паодписываемся на поток
+  subscribeStream() { // подписываемся на поток
     return ajax.getJSON(this.url).pipe(// отправляем запрос
-      map((response) => {
-        console.log(response);
-        const newMessages = response.messages.filter((mess) => !this.messId.has(mess.id)); // has() возвращает логическое значение, показывающее, существует ли элемент с указанным значением в объекте Set или нет.
-        return newMessages; // возвращает только новые сообщения
-      }),
+      map((response) => response),
       catchError((error) => { // принимает колбек и на выход т.к. предыдущий поток прерван, может вернуть новый
         console.log('error: ', error);
         if (!this.table.querySelector('.error')) {
           errorMessage();
         }
 
-        return of(); // генерируе ответ сам, вывожу ошибку
+        return of(); // генерируе ответ сам, можно выводить ошибку
       }),
     );
   }
 
-  onClickBtn() { // сделала кнопку на подписку
+  onClickBtn() {
     let subscribe = false;
-    this.startClick$ = this.btnClick$.pipe( // создание потока когда щелкнула по нему
+    this.startClick$ = this.btnClick$.pipe( // создание потока когда щелкнула по нему. Меняет состояние кнопки и статуса
       map((e) => {
         const elem = e.target;
         if (elem.classList.contains('btn')) {
@@ -89,11 +84,7 @@ export default class Widget {
       switchMap(() => this.subscribeStream()),
     )
       .subscribe((response) => { // подписаться на данный поток, получить некий результат (получить данные)
-        console.log(response);
-        response.forEach((message) => this.messId.add(message.id));
-        console.log(this.messId);
-
-        const data = response;
+        const data = response.messages;
         if (data.length > 0) {
           data.forEach((elem) => {
             if (elem.subject.length > 15) {
