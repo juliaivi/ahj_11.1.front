@@ -1,0 +1,60 @@
+body {  
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  background-color: #fffcfc;
+}
+
+button {
+  position: absolute;
+  height: 38px; 
+  top: 73px;
+  right: 263px;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+button:hover {
+  background: green;
+  color: white;
+}
+
+.d__none {
+  display: none;
+}
+
+table { 
+  width: 100%;
+  border-collapse: collapse; 
+  table-layout:fixed;
+}
+
+tr {
+  border: 3px solid rgb(24, 23, 23);
+}
+
+td {
+  word-wrap:break-word;
+}
+.container {
+  width: 900px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  margin: 100px auto;
+}
+
+.table__caption {
+ text-align: left;
+}
+
+.mail, .date {
+  width: 30%;
+  padding: 10px;
+  text-align: center; 
+}
+
+.error {
+  color: red;
+}
+
+
