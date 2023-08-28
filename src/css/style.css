@@ -5,7 +5,17 @@ body {
 }
 
 button {
+  position: absolute;
+  height: 38px; 
+  top: 73px;
+  right: 263px;
   cursor: pointer;
+  border-radius: 8px;
+}
+
+button:hover {
+  background: green;
+  color: white;
 }
 
 .d__none {
